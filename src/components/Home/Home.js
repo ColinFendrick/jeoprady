@@ -1,3 +1,3 @@
-const Home = () => <div>React Skeleton</div>;
+const Home = () => <div>React Jeoprady</div>;
 
 export default Home;

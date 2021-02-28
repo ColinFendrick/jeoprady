@@ -11,7 +11,7 @@ describe('Testing <Home />', () => {
 
   test('Renders', () => {
     expect(
-      screen.getByText('React Skeleton')
+      screen.getByText('React Jeoprady')
     ).toBeInTheDocument();
   });
 });

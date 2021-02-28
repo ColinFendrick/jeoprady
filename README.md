@@ -1,3 +1,3 @@
-# React Skeleton
+# Jeoprady
 
-The basic setup for a create-react-app project with my own specs
+Here you go Greg
