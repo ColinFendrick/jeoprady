@@ -12,7 +12,6 @@ import useStyles from './styles';
 const Tile = ({ question }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-
   const flipState = () => setOpen(!open);
 
   return (
@@ -31,7 +30,7 @@ const Tile = ({ question }) => {
         </CardActionArea>
       </Card>
 
-      <Question question={question} modalState={[open, setOpen]} />
+      <Question question={question} modalState={[open, flipState]} />
     </>
   );
 };

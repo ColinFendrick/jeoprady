@@ -5,9 +5,7 @@ import useStyles from './styles';
 
 const Question = ({ question, modalState }) => {
   const classes = useStyles();
-  const [open, setOpen] = modalState;
-
-  const flipState = () => setOpen(!open);
+  const [open, set] = modalState;
 
   return (
     <Modal
@@ -15,7 +13,7 @@ const Question = ({ question, modalState }) => {
       aria-describedby='transition-modal-description'
       className={classes.modal}
       open={open}
-      onClose={flipState}
+      onClose={set}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
