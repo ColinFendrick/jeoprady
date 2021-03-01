@@ -4,8 +4,9 @@ import {
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '100%',
-    background: 'violet'
+    width: '100vw',
+    height: '100vh',
+    background: 'blue'
   }
 }));
 

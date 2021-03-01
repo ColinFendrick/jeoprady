@@ -1,5 +1,21 @@
+import useAppContext from '../../hooks/useAppContext';
+
 import { Tile } from '..';
 
-const Home = () => <Tile question='First question' />;
+import useStyles from './styles';
+
+const Home = () => {
+  const classes = useStyles();
+  const { appState } = useAppContext();
+
+  return (
+    <div className={classes.root}>
+      {appState.questions.map((q, i) =>
+        <Tile question={q} key={i} />
+      )}
+    </div>
+  );
+};
+
 
 export default Home;

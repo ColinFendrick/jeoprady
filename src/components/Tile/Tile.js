@@ -1,6 +1,5 @@
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
@@ -14,7 +13,7 @@ const Tile = ({ question }) => {
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
-            {question}
+            {question.title}
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>
             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
