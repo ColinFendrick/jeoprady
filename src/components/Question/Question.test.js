@@ -5,13 +5,21 @@ import { renderWith, setup } from '../../setupTests';
 import Question from './Question';
 
 describe('Testing <Question />', () => {
+  const question = {
+    title: 'Second Question',
+    content: 'How many stones is 112 pounds?',
+    answer: '4'
+  };
+  const modalState = [true, () => {}];
   setup(beforeEach)(
-    () => renderWith()(<Question />)
+    () => renderWith()(
+      <Question
+        modalState={modalState} question={question} />)
   );
 
   test('Renders', () => {
     expect(
-      screen.getByText('react-transition-group')
+      screen.getByText(question.content)
     ).toBeInTheDocument();
   });
 });
