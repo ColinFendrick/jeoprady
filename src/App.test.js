@@ -11,7 +11,7 @@ describe('Testing <App />', () => {
 
   test('Shows the basic setup', () => {
     expect(
-      screen.getByText('Basic Setup:')
+      screen.getByText('Jeoprady!')
     ).toBeInTheDocument();
   });
 });

@@ -1,14 +1,18 @@
 import { Switch, Route } from 'react-router-dom';
 
 import { Home } from './components';
+import { Main } from './views';
 
 const App = () => (
-  <div>
-      Basic Setup:
+  <Main>
+    <div>
+      Jeoprady!
+    </div>
+
     <Switch>
       <Route path='/' exact component={Home} />
     </Switch>
-  </div>
+  </Main>
 );
 
 export default App;

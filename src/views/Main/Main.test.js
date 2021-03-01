@@ -2,16 +2,16 @@ import { screen } from '@testing-library/react';
 
 import { renderWith, setup } from '../../setupTests';
 
-import Home from './Home';
+import Main from './Main';
 
-describe('Testing <Home />', () => {
+describe('Testing <Main />', () => {
   setup(beforeEach)(
-    () => renderWith()(<Home />)
+    () => renderWith()(<Main>{'testing text'}</Main>)
   );
 
   test('Renders', () => {
     expect(
-      screen.getByText('First question')
+      screen.getByText('testing text')
     ).toBeInTheDocument();
   });
 });
