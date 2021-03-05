@@ -2,6 +2,6 @@ import http from '../http-common';
 
 const get = () => http.get('/');
 
-const service = { get };
+const AppService = { get };
 
-export default service;
+export default AppService;

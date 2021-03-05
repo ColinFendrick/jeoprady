@@ -4,8 +4,8 @@ const db = require('../models');
 
 exports.signup = async (req, res) => {
   const appuser = new db.Appuser({
-    username: 'test',
-    email: 'test',
+    username: req.body.username,
+    email: req.body.email,
     password: bcrypt.hashSync('test', 8)
   });
 
