@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.0",
+    "concurrently": "^6.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -15,7 +16,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "PORT=4242 react-scripts start",
+    "start": "concurrently \"cd backend && npm run start\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
