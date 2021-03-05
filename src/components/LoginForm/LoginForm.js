@@ -5,8 +5,11 @@ const LoginForm = ({ onSubmit, loading, message }) => {
   const { register, handleSubmit, errors } = useForm({
     username: '', password: ''
   });
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    < form onSubmit = {
+      handleSubmit(onSubmit)
+    } >
 
       <div className='form-group'>
         <label htmlFor='username'>Username</label>
@@ -16,6 +19,7 @@ const LoginForm = ({ onSubmit, loading, message }) => {
           id='username'
           ref={register({ required: true })}
           defaultValue=''
+          autoComplete='username'
           name='username' />
         {errors.username && 'Username is required'}
       </div>
@@ -28,10 +32,11 @@ const LoginForm = ({ onSubmit, loading, message }) => {
           id='password'
           ref={register({ required: true, pattern: passwordRegex })}
           defaultValue=''
+          autoComplete='current-password'
           name='password' />
         {errors.password?.type === 'required' &&
           'Your input is required'}
-        {errors.multipleErrorInput?.type === 'pattern' &&
+        {errors.password?.type === 'pattern' &&
           'Must be at least 8 characters, containing one special character'}
       </div>
 

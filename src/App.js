@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
 
 import { Home } from './components';
-import { Main } from './views';
+import { Main, Login } from './views';
 
 const App = () => (
   <Main>
@@ -10,7 +10,8 @@ const App = () => (
     </div>
 
     <Switch>
-      <Route path='/' exact component={Home} />
+      <Route path='/' exact component={Login} />
+      <Route path='/main' exact component={Home} />
     </Switch>
   </Main>
 );
