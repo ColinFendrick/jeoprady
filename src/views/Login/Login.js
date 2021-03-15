@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import AuthService from '../../services/AuthService';
 import { LoginForm } from '../../components';
 
-const Login = props => {
+const Login = () => {
+  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -11,13 +13,15 @@ const Login = props => {
     setMessage('');
     setLoading(true);
 
+    console.log('login');
+
     try {
       const res = await AuthService.login(data);
       if (res.status === 404) {
         setMessage(res.data.message);
         setLoading(false);
       } else {
-        props.history.push('/main');
+        history.push('/main');
         window.location.reload();
       }
     } catch (e) {
