@@ -17,7 +17,7 @@ const authRoutes = app => {
     auth.signup
   );
 
-  app.use('/api/auth', router);
+  app.use('/auth', router);
 };
 
 module.exports = authRoutes;
