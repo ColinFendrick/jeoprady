@@ -17,6 +17,10 @@ const authRoutes = app => {
     auth.signup
   );
 
+  router.post('/signin',
+    auth.signin
+  );
+
   app.use('/auth', router);
 };
 

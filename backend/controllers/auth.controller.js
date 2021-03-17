@@ -8,7 +8,7 @@ exports.signup = async (req, res) => {
   const appuser = new AppUser({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync('test', 8)
+    password: bcrypt.hashSync(req.body.password, 8)
   });
 
   try {
@@ -31,7 +31,6 @@ exports.signin = async (req, res) => {
         message: 'User Not found.'
       });
 
-
     const passwordIsValid = bcrypt.compareSync(
       req.body.password,
       appuser.password
@@ -42,7 +41,6 @@ exports.signin = async (req, res) => {
         accessToken: null,
         message: 'Invalid Password!'
       });
-
 
     const token = jwt.sign({
       id: appuser.id
