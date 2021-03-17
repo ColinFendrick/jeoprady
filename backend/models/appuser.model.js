@@ -14,5 +14,5 @@ module.exports = mongoose => {
     }
   });
 
-  return AppUser;
+  return mongoose.model('AppUser', AppUser);
 };

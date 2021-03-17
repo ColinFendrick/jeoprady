@@ -2,9 +2,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const db = require('../models');
+const AppUser = db.Appusers;
 
 exports.signup = async (req, res) => {
-  const appuser = new db.Appuser({
+  const appuser = new AppUser({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync('test', 8)
@@ -19,7 +20,7 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   try {
-    const appuser = await db.Appuser.findOne({
+    const appuser = await AppUser.findOne({
       where: {
         username: req.body.username
       }

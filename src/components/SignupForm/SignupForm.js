@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { passwordRegex } from '../../helpers/regex';
+import { passwordRegex, emailRegex } from '../../helpers/regex';
 
-const LoginForm = ({ onSubmit, loading, message }) => {
+const SignupForm = ({ onSubmit, loading, message }) => {
   const { register, handleSubmit, errors } = useForm({
-    username: '', password: ''
+    username: '', email: '', password: ''
   });
 
   return (
@@ -22,6 +22,20 @@ const LoginForm = ({ onSubmit, loading, message }) => {
           autoComplete='username'
           name='username' />
         {errors.username && 'Username is required'}
+      </div>
+
+      <div className='form-group'>
+        <label htmlFor='email'>Email</label>
+        <input
+          type='text'
+          className='form-control'
+          id='email'
+          ref={register({ required: true, pattern: emailRegex })}
+          defaultValue=''
+          autoComplete='email'
+          name='email' />
+        {errors.email?.type === 'required' && 'Email is required'}
+        {errors.email?.type === 'pattern' && 'Not a valid email'}
       </div>
 
       <div className='form-group'>
@@ -48,7 +62,7 @@ const LoginForm = ({ onSubmit, loading, message }) => {
           {loading && (
             <span className='spinner-border spinner-border-sm'></span>
           )}
-          <span>Login</span>
+          <span>Sign Up</span>
         </button>
       </div>
 
@@ -64,4 +78,4 @@ const LoginForm = ({ onSubmit, loading, message }) => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;

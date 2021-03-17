@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
 
 import { Home } from './components';
-import { Main, Login } from './views';
+import { Main, Login, Signup } from './views';
 
 const App = () => (
   <Main>
@@ -11,6 +11,7 @@ const App = () => (
 
     <Switch>
       <Route path='/' exact component={Login} />
+      <Route path='/register' exact component={Signup} />
       <Route path='/main' exact component={Home} />
     </Switch>
   </Main>
