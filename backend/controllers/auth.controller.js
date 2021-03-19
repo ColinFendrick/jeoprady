@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const db = require('../models');
-const AppUser = db.Appusers;
+const AppUser = db.AppUsers;
 
 exports.signup = async (req, res) => {
   const appuser = new AppUser({
@@ -48,7 +48,7 @@ exports.signin = async (req, res) => {
       expiresIn: 86400 // 24 hours
     });
 
-    res.status(200).send({
+    res.send({
       id: appuser.id,
       username: appuser.username,
       email: appuser.email,
