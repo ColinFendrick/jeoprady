@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import './index.css';
 import './App.css';
@@ -9,12 +11,18 @@ import App from './App';
 import ContextContainer from './containers/ContextContainer';
 import reportWebVitals from './reportWebVitals';
 
+const queryClient = new QueryClient();
+
 ReactDOM.render(
-  <BrowserRouter>
-    <ContextContainer>
-      <App />
-    </ContextContainer>
-  </BrowserRouter>
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <ContextContainer>
+        <App />
+      </ContextContainer>
+    </BrowserRouter>
+
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
   ,
   document.getElementById('root')
 );

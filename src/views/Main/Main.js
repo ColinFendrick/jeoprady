@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 
 import AppService from '../../services/AppService';
 import useStyles from './styles';
 
 const Main = ({ children }) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    AppService.get();
-  }, []);
+  const { isError, error, isLoading } = useQuery('healthcheck', AppService.get);
 
   return (
     <div className={classes.root}>
-      {children}
+      {isLoading ?
+        <div>Loading</div>
+        : isError ?
+          error.message
+          : children}
     </div>
   );
 };

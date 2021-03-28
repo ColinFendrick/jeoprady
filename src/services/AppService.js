@@ -1,6 +1,6 @@
 import http from '../http-common';
 
-const get = () => http.get('/');
+const get = async () => await http.get('/');
 
 const AppService = { get };
 

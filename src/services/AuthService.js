@@ -6,19 +6,15 @@ const register = ({ username, email, password }) =>
   http.post(`${path}/signup`, { username, email, password });
 
 const login = async ({ username, password }) => {
-  try {
-    const response = await http.post(`${path}/signin`, {
-      username,
-      password
-    });
+  const res = await http.post(`${path}/signin`, {
+    username,
+    password
+  });
 
-    if (response.data.accessToken)
-      localStorage.setItem('user', JSON.stringify(response.data));
+  if (res.data.accessToken)
+    localStorage.setItem('user', JSON.stringify(res.data));
 
-    return response;
-  } catch (e) {
-    return e.response;
-  }
+  return res;
 };
 
 const logout = () => localStorage.remoteItem('user');
