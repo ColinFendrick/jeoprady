@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { passwordRegex } from '../../helpers/regex';
 
-const LoginForm = ({ onSubmit, loading, message }) => {
+const LoginForm = ({ onSubmit, isLoading, message }) => {
   const { register, handleSubmit, errors } = useForm({
     username: '', password: ''
   });
@@ -43,9 +43,9 @@ const LoginForm = ({ onSubmit, loading, message }) => {
       <div className='form-group'>
         <button
           className='btn btn-primary btn-block'
-          disabled={loading}
+          disabled={isLoading}
           type='submit'>
-          {loading && (
+          {isLoading && (
             <span className='spinner-border spinner-border-sm'></span>
           )}
           <span>Login</span>
