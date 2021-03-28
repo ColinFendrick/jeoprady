@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import AppService from '../../services/AppService';
 import useStyles from './styles';
 
@@ -10,7 +11,7 @@ const Main = ({ children }) => {
   return (
     <div className={classes.root}>
       {isLoading ?
-        <div>Loading</div>
+        <CircularProgress />
         : isError ?
           error.message
           : children}
