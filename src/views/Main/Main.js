@@ -6,7 +6,7 @@ import useStyles from './styles';
 
 const Main = ({ children }) => {
   const classes = useStyles();
-  const { isError, error, isLoading } = useQuery('healthcheck', AppService.get);
+  const { isError, isLoading, error } = useQuery('healthcheck', AppService.get);
 
   return (
     <div className={classes.root}>
