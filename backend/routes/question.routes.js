@@ -1,16 +1,11 @@
 const router = require('express').Router();
 
 // const { verifyJwt } = require('../middleware');
+const { setHeaders } = require('../utils');
 const questions = require('../controllers/questions.controller');
 
 const questionRoutes = app => {
-  router.use((req, res, next) => {
-    res.header(
-      'Access-Control-Allow-Headers',
-      'x-access-token, Origin, Content-Type, Accept'
-    );
-    next();
-  });
+  setHeaders(router);
 
   router.get('/getQuestions', questions.getQuestions);
 
