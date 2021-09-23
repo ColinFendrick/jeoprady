@@ -19,7 +19,7 @@
   "rules": {
     "indent": ["warn", 2, { "SwitchCase": 1 }],
     "max-len": ["warn", { "code": 120 }],
-    "no-trailing-spaces": "error",
+    "no-trailing-spaces": "warn",
     "multiline-ternary": ["warn", "always-multiline"],
     "no-console": "off",
     "object-curly-spacing": [
@@ -30,20 +30,23 @@
         "objectsInObjects": false
       }
     ],
-    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "key-spacing": ["warn", {
+      "beforeColon": false,
+      "afterColon": true
+    }],
     "array-bracket-spacing": [
-      "error",
+      "warn",
       "never"
     ],
     "comma-spacing": [
-      "error",
+      "warn",
       {
         "before": false,
         "after": true
       }
     ],
     "keyword-spacing": "warn",
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": ["warn", "never"],
     "no-unused-vars": ["warn",
       {
         "vars": "local",
@@ -67,8 +70,8 @@
       "error",
       "always"
     ],
-    "eol-last": ["error", "always"],
-    "no-multiple-empty-lines": ["error", {
+    "eol-last": ["warn", "always"],
+    "no-multiple-empty-lines": ["warn", {
       "max": 2,
       "maxEOF": 0
     }],
@@ -79,7 +82,7 @@
     }],
     "eqeqeq": "error",
     "space-infix-ops": [
-      "error",
+      "warn",
       {
         "int32Hint": false
       }
@@ -89,10 +92,10 @@
     "arrow-body-style": ["warn", "as-needed"],
     "arrow-spacing": "warn",
     "no-mixed-spaces-and-tabs": ["warn", "smart-tabs"],
-    "curly": ["error", "multi"],
+    "curly": ["warn", "multi"],
     "handle-callback-err": "error",
-    "one-var": ["error", "never"],
-    "func-call-spacing": ["error", "never"],
-    "dot-location": ["error", "property"]
+    "one-var": ["warn", "never"],
+    "func-call-spacing": ["warn", "never"],
+    "dot-location": ["warn", "property"]
   }
 }
