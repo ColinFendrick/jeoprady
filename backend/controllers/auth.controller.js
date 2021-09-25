@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../models');
 const AppUser = db.AppUsers;
 
-exports.signup = async (req, res) => {
+exports.signUp = async (req, res) => {
   const appUser = new AppUser({
     username: req.body.username,
     email: req.body.email,
@@ -27,7 +27,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.signin = async (req, res) => {
+exports.signIn = async (req, res) => {
   try {
     const appUser = await AppUser.findById(req.body.id);
 
@@ -63,6 +63,27 @@ exports.signin = async (req, res) => {
       },
       message: 'Token accepted. Sign in successful.'
     });
+  } catch (e) {
+    res.status(500).send({
+      message: e.message
+    });
+  }
+};
+
+exports.getUser = async (req, res) => {
+  try {
+    const appUser = await AppUser.findById(req.body.id);
+
+    if (!appUser)
+      return res.status(404).send({
+        message: 'Cannot find your user credentials'
+      });
+
+    res.send({
+      data: appUser,
+      message: 'Successfully retrieved self data'
+    });
+
   } catch (e) {
     res.status(500).send({
       message: e.message

@@ -46,8 +46,6 @@ exports.createQuestion = async (req, res) => {
       appUser
     });
 
-    console.log(appUser, newQuestion);
-
     await newQuestion.save();
 
     appUser.questions.push({

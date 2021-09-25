@@ -6,10 +6,12 @@ const auth = require('../controllers/auth.controller');
 const authRoutes = app => {
   router.post('/signup',
     verifySignUp.checkDuplicateUsernameOrEmail,
-    auth.signup
+    auth.signUp
   );
 
-  router.post('/signin', auth.signin);
+  router.post('/signin', auth.signIn);
+
+  router.get('/self', auth.getUser);
 
   // ADMIN ROUTES
   router.get('/appUsers', auth.getAllUsers);
