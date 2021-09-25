@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+
 import { passwordRegex, emailRegex } from '../../helpers/regex';
 
 const SignupForm = ({ onSubmit, loading, message }) => {

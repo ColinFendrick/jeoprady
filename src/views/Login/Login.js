@@ -21,7 +21,6 @@ const Login = () => {
   return (
     <div className='col-md-12'>
       <div className='card card-container'>
-
         <LoginForm onSubmit={handleLogin} message={error?.message} isLoading={isLoading} />
       </div>
 

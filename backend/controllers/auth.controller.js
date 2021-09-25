@@ -29,7 +29,7 @@ exports.signUp = async (req, res) => {
 
 exports.signIn = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.body.id);
+    const appUser = await AppUser.findOne({ username: req.body.username });
 
     if (!appUser)
       return res.status(404).send({
