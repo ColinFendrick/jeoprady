@@ -65,6 +65,45 @@ exports.createQuestion = async (req, res) => {
   }
 };
 
+exports.updateQuestion = async (req, res) => {
+  try {
+    const appUser = await AppUser.findById(req.userId);
+
+    if (!appUser)
+      return res.status(401).send({
+        message: 'Cannot find your user info. Please relog.'
+      });
+
+    const question = await Question.findByIdAndUpdate(
+      req.params.id,
+      {
+        question: req.body.question,
+        answer: req.body.answer
+      },
+      { new: true, runValidators: true }
+    );
+
+    if (!question)
+      return res.status(401).send({
+        message: 'Cannot find this question. Please reload.'
+      });
+
+    const ix = appUser.questions.findIndex(q => q._id === req.body.id);
+    appUser.questions.splice(ix, 1, question);
+
+    await appUser.save();
+
+    res.send({
+      appUser,
+      message: 'Message successfully deleted'
+    });
+  } catch (e) {
+    res.status(500).send({
+      message: e.message
+    });
+  }
+};
+
 exports.deleteQuestion = async (req, res) => {
   try {
     const appUser = await AppUser.findById(req.userId);
@@ -73,6 +112,7 @@ exports.deleteQuestion = async (req, res) => {
       return res.status(401).send({
         message: 'Cannot find your user info. Please relog.'
       });
+
     const question = await Question.findByIdAndDelete(req.params.id);
 
     if (!question)
