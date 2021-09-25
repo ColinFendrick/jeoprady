@@ -4,7 +4,7 @@ const AppUser = db.AppUsers;
 
 exports.getQuestions = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.body.id);
+    const appUser = await AppUser.findById(req.userId);
 
     if (!appUser)
       return res.status(404).send({
@@ -37,7 +37,7 @@ exports.getQuestions = async (req, res) => {
 
 exports.createQuestion = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.body.id);
+    const appUser = await AppUser.findById(req.userId);
     const newQuestion = new Question({
       question: req.body.question,
       answer: req.body.answer,
@@ -49,7 +49,7 @@ exports.createQuestion = async (req, res) => {
     appUser.questions.push({
       question: newQuestion.question,
       answer: newQuestion.answer,
-      id: newQuestion._id
+      _id: newQuestion._id
     });
 
     await appUser.save();
@@ -57,6 +57,35 @@ exports.createQuestion = async (req, res) => {
     res.send({
       data: newQuestion,
       message: 'New Question created'
+    });
+  } catch (e) {
+    res.status(500).send({
+      message: e.message
+    });
+  }
+};
+
+exports.deleteQuestion = async (req, res) => {
+  try {
+    const appUser = await AppUser.findById(req.userId);
+
+    if (!appUser)
+      return res.status(401).send({
+        message: 'Cannot find your user info. Please relog.'
+      });
+    const question = await Question.findByIdAndDelete(req.params.id);
+
+    if (!question)
+      return res.status(401).send({
+        message: 'Cannot find this question. Please reload.'
+      });
+
+    const ix = appUser.questions.findIndex(q => q._id === req.body.id);
+    appUser.questions.splice(ix, 1);
+
+    res.send({
+      appUser,
+      message: 'Message successfully deleted'
     });
   } catch (e) {
     res.status(500).send({

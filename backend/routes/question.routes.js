@@ -14,6 +14,11 @@ const questionRoutes = app => {
     questions.createQuestion
   );
 
+  router.delete('/question/:id',
+    verifyJwt.verifyToken,
+    questions.deleteQuestion
+  );
+
   app.use(router);
 };
 

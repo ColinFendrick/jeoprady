@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { verifySignUp } = require('../middleware');
+const { verifySignUp, verifyJwt } = require('../middleware');
 const auth = require('../controllers/auth.controller');
 
 const authRoutes = app => {
@@ -11,7 +11,10 @@ const authRoutes = app => {
 
   router.post('/signin', auth.signIn);
 
-  router.get('/self', auth.getUser);
+  router.get('/self',
+    verifyJwt.verifyToken,
+    auth.getUser
+  );
 
   // ADMIN ROUTES
   router.get('/appUsers', auth.getAllUsers);
