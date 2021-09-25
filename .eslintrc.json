@@ -21,7 +21,7 @@
     "max-len": ["warn", { "code": 120 }],
     "no-trailing-spaces": "warn",
     "multiline-ternary": ["warn", "always-multiline"],
-    "no-console": "off",
+    "no-console": "warn",
     "object-curly-spacing": [
       "error",
       "always",

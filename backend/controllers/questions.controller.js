@@ -4,8 +4,6 @@ const AppUser = db.AppUsers;
 
 exports.getQuestions = async (req, res) => {
   try {
-    console.log(req.body.id);
-
     const appUser = await AppUser.findById(req.body.id);
 
     if (!appUser)
