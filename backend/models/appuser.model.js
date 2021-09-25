@@ -1,4 +1,6 @@
 module.exports = mongoose => {
+  const Schema = mongoose.Schema;
+
   const AppUser = new mongoose.Schema({
     username: {
       type: String,
@@ -11,7 +13,19 @@ module.exports = mongoose => {
     password: {
       type: String,
       required: true
-    }
+    },
+    questions: [
+      {
+        question: {
+          type: String,
+          required: true
+        },
+        answer: {
+          type: String,
+          required: true
+        }
+      }
+    ]
   });
 
   return mongoose.model('AppUser', AppUser);

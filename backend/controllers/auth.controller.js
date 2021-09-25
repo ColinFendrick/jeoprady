@@ -14,8 +14,12 @@ exports.signup = async (req, res) => {
   try {
     await appUser.save();
     res.send({
-      username: req.body.username,
-      email: req.body.email,
+      data: {
+        username: req.body.username,
+        email: req.body.email,
+        questions: appUser.questions,
+        id: appUser._id
+      },
       message: `${req.body.username} successfully created`
     });
   } catch (e) {
@@ -25,39 +29,39 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   try {
-    const appuser = await AppUser.findOne({
-      where: {
-        username: req.body.username
-      }
-    });
+    const appUser = await AppUser.findById(req.body.id);
 
-    if (!appuser)
+    if (!appUser)
       return res.status(404).send({
         message: 'User Not found.'
       });
 
     const passwordIsValid = bcrypt.compareSync(
       req.body.password,
-      appuser.password
+      appUser.password
     );
 
     if (!passwordIsValid)
       return res.status(401).send({
-        accessToken: null,
+        data: { accessToken: null },
         message: 'Invalid Password!'
       });
 
     const token = jwt.sign({
-      id: appuser.id
+      id: appUser._id
     }, 'secrettoken', {
       expiresIn: 86400 // 24 hours
     });
 
     res.send({
-      id: appuser.id,
-      username: appuser.username,
-      email: appuser.email,
-      accessToken: token
+      data: {
+        username: appUser.username,
+        email: appUser.email,
+        questions: appUser.questions,
+        id: appUser._id,
+        accessToken: token
+      },
+      message: 'Token accepted. Sign in successful.'
     });
   } catch (e) {
     res.status(500).send({
@@ -66,6 +70,7 @@ exports.signin = async (req, res) => {
   }
 };
 
+// ADMIN ROUTES
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await AppUser.find({});

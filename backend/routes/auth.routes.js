@@ -11,6 +11,7 @@ const authRoutes = app => {
 
   router.post('/signin', auth.signin);
 
+  // ADMIN ROUTES
   router.get('/appUsers', auth.getAllUsers);
 
   app.use('/auth', router);
