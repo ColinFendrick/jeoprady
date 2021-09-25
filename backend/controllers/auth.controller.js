@@ -5,14 +5,19 @@ const db = require('../models');
 const AppUser = db.AppUsers;
 
 exports.signup = async (req, res) => {
-  const appuser = new AppUser({
+  const appUser = new AppUser({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8)
   });
 
   try {
-    res.send(appuser);
+    await appUser.save();
+    res.send({
+      username: req.body.username,
+      email: req.body.email,
+      message: `${req.body.username} successfully created`
+    });
   } catch (e) {
     res.status(400).send(e);
   }
@@ -54,6 +59,23 @@ exports.signin = async (req, res) => {
       email: appuser.email,
       accessToken: token
     });
+  } catch (e) {
+    res.status(500).send({
+      message: e.message
+    });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await AppUser.find({});
+
+    if (!users)
+      return res.send({
+        message: 'No Users Found'
+      });
+
+    res.send({ users });
   } catch (e) {
     res.status(500).send({
       message: e.message

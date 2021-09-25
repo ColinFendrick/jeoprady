@@ -9,9 +9,9 @@ const authRoutes = app => {
     auth.signup
   );
 
-  router.post('/signin',
-    auth.signin
-  );
+  router.post('/signin', auth.signin);
+
+  router.get('/appUsers', auth.getAllUsers);
 
   app.use('/auth', router);
 };

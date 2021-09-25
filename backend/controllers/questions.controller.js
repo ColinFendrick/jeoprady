@@ -10,9 +10,7 @@ exports.getQuestions = async (req, res) => {
         message: 'No questions found'
       });
 
-    res.send({
-      questions
-    });
+    res.send({ questions });
   } catch (e) {
     res.status(500).send({
       message: e.message

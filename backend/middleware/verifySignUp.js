@@ -4,10 +4,9 @@ const AppUser = db.AppUsers;
 const checkDuplicateUsernameOrEmail = async (req, res, next) => {
   try {
     const appuserByUsername = await AppUser.findOne({
-      where: {
-        username: req.body.username
-      }
+      username: req.body.username
     });
+
     if (appuserByUsername) {
       res.status(400).send({
         message: 'Failed! Username is already in use!'
@@ -16,10 +15,9 @@ const checkDuplicateUsernameOrEmail = async (req, res, next) => {
     }
 
     const appuserByEmail = await AppUser.findOne({
-      where: {
-        email: req.body.email
-      }
+      email: req.body.email
     });
+
     if (appuserByEmail) {
       res.status(400).send({
         message: 'Failed! Email is already in use!'
