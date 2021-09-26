@@ -1,5 +1,6 @@
-// import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 
+import AppService from '../../services/AppService';
 import useAppContext from '../../hooks/useAppContext';
 
 import { Tile } from '..';
@@ -8,10 +9,17 @@ import useStyles from './styles';
 
 const Home = () => {
   const classes = useStyles();
-  const {
-    appState
-    // setAppState
-  } = useAppContext();
+  const { appState, setAppState } = useAppContext();
+
+  useQuery(
+    'getQuestions',
+    () => AppService.getQuestions(appState.user),
+    {
+      onSuccess: ({ data }) => {
+        setAppState(state => ({ ...state, questions: data.data }));
+      }
+    }
+  );
 
   return (
     <div className={classes.root}>

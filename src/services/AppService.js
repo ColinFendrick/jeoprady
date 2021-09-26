@@ -2,7 +2,12 @@ import http from '../http-common';
 
 const healthcheck = async () => await http.get('/');
 
-const getQuestions = async () => await http.get('/question');
+const getQuestions = async ({ accessToken }) =>
+  await http.get('/question', {
+    headers: {
+      'x-access-token': accessToken
+    }
+  });
 
 const createQuestion = async ({ question, answer }) =>
   await http.post('/question', { question, answer });

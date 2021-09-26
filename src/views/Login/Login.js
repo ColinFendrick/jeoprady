@@ -1,20 +1,22 @@
-import { useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import AuthService from '../../services/AuthService';
+import useAppContext from '../../hooks/useAppContext';
 import { LoginForm } from '../../components';
 
 const Login = () => {
   const history = useHistory();
-  const { mutate, isSuccess, isLoading, error } = useMutation(formData => AuthService.login(formData));
-
-  useEffect(() => {
-    if (isSuccess) {
-      history.push('/home');
-      window.location.reload();
+  const { setAppState } = useAppContext();
+  const { mutate, isLoading, error } = useMutation(
+    formData => AuthService.login(formData),
+    {
+      onSuccess: ({ data }) => {
+        setAppState(state => ({ ...state, user: data.data }));
+        history.push('/home');
+      }
     }
-  }, [isSuccess, history]);
+  );
 
   const handleLogin = async data => mutate(data);
 
