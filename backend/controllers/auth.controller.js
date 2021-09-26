@@ -101,7 +101,7 @@ exports.getAllUsers = async (req, res) => {
         message: 'No Users Found'
       });
 
-    res.send({ users });
+    res.send({ data: users });
   } catch (e) {
     res.status(500).send({
       message: e.message

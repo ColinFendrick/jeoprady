@@ -20,12 +20,12 @@ exports.getQuestions = async (req, res) => {
 
     if (!questions.length)
       return res.send({
-        questions,
+        data: questions,
         message: 'No questions found'
       });
 
     res.send({
-      questions,
+      data: questions,
       message: 'Successfully retrieved questions'
     });
   } catch (e) {
@@ -94,7 +94,7 @@ exports.updateQuestion = async (req, res) => {
     await appUser.save();
 
     res.send({
-      appUser,
+      data: appUser,
       message: 'Message successfully deleted'
     });
   } catch (e) {
@@ -124,7 +124,7 @@ exports.deleteQuestion = async (req, res) => {
     appUser.questions.splice(ix, 1);
 
     res.send({
-      appUser,
+      data: appUser,
       message: 'Message successfully deleted'
     });
   } catch (e) {

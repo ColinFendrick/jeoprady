@@ -19,10 +19,13 @@ const login = async ({ username, password }) => {
 
 const logout = () => localStorage.remoteItem('user');
 
+const self = async () => await http.get(`${path}/self`);
+
 const AuthService = {
   register,
   login,
-  logout
+  logout,
+  self
 };
 
 export default AuthService;
