@@ -1,3 +1,5 @@
+// import { useMutation } from 'react-query';
+
 import useAppContext from '../../hooks/useAppContext';
 
 import { Tile } from '..';
@@ -6,7 +8,10 @@ import useStyles from './styles';
 
 const Home = () => {
   const classes = useStyles();
-  const { appState } = useAppContext();
+  const {
+    appState
+    // setAppState
+  } = useAppContext();
 
   return (
     <div className={classes.root}>
