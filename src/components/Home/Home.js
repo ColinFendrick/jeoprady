@@ -13,7 +13,7 @@ const Home = () => {
 
   useQuery(
     'getQuestions',
-    () => AppService.getQuestions(appState.user),
+    () => AppService.getQuestions(appState.user.accessToken),
     {
       onSuccess: ({ data }) => {
         setAppState(state => ({ ...state, questions: data.data }));
