@@ -18,10 +18,8 @@ const Signup = () => {
       if (res.status === 404) {
         setMessage(res.data.message);
         setLoading(false);
-      } else {
-        history.push('/home');
-        window.location.reload();
-      }
+      } else history.push('/home');
+
     } catch (e) {
       const resMessage = e.response.data.message.toString() || 'An error has occured';
       setLoading(false);
