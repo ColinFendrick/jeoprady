@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className={classes.root}>
       {appState.questions.map((q, i) =>
-        <Tile question={q} key={i} />
+        <Tile question={q} index={i} key={i} />
       )}
     </div>
   );

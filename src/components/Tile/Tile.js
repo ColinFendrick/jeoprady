@@ -23,7 +23,7 @@ const Tile = ({
         <CardActionArea onClick={flipState}>
           <CardContent>
             <Typography gutterBottom variant='h5' component='h2'>
-              Question {index}
+              Question # {index + 1}
             </Typography>
             <Typography variant='body2' color='textSecondary' component='p'>
               {question.question}
