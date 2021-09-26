@@ -19,7 +19,7 @@ const Signup = () => {
         setMessage(res.data.message);
         setLoading(false);
       } else {
-        history.push('/main');
+        history.push('/home');
         window.location.reload();
       }
     } catch (e) {
@@ -32,7 +32,6 @@ const Signup = () => {
   return (
     <div className='col-md-12'>
       <div className='card card-container'>
-
         <SignupForm onSubmit={handleSignup} message={message} loading={loading} />
       </div>
     </div>

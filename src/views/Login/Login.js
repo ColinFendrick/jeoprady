@@ -11,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      history.push('/main');
+      history.push('/home');
       window.location.reload();
     }
   }, [isSuccess, history]);

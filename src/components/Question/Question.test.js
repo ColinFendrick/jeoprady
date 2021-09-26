@@ -6,20 +6,21 @@ import Question from './Question';
 
 describe('Testing <Question />', () => {
   const question = {
-    title: 'Second Question',
-    content: 'How many stones is 112 pounds?',
+    question: 'How many stones is 112 pounds?',
     answer: '4'
   };
   const modalState = [true, () => {}];
   setup(beforeEach)(
     () => renderWith()(
       <Question
-        modalState={modalState} question={question} />)
+        modalState={modalState}
+        question={question}
+      />)
   );
 
   test('Renders', () => {
     expect(
-      screen.getByText(question.content)
+      screen.getByText(question.question)
     ).toBeInTheDocument();
   });
 });

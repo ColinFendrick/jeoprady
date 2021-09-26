@@ -8,12 +8,15 @@ describe('Testing <SignupForm />', () => {
   setup(beforeEach)(
     () => renderWith()(
       <SignupForm
-        onSubmit={() => {}} loading={false} message='test message' />)
+        onSubmit={() => {}}
+        loading={false}
+        message='test message'
+      />)
   );
 
   test('Renders', () => {
     expect(
-      screen.getByText(SignupForm.content)
+      screen.getByText('test message')
     ).toBeInTheDocument();
   });
 });

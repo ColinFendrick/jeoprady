@@ -9,7 +9,10 @@ import { Question } from '..';
 
 import useStyles from './styles';
 
-const Tile = ({ question }) => {
+const Tile = ({
+  question,
+  index
+}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const flipState = () => setOpen(!open);
@@ -20,11 +23,10 @@ const Tile = ({ question }) => {
         <CardActionArea onClick={flipState}>
           <CardContent>
             <Typography gutterBottom variant='h5' component='h2'>
-              {question.title}
+              Question {index}
             </Typography>
             <Typography variant='body2' color='textSecondary' component='p'>
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+              {question.question}
             </Typography>
           </CardContent>
         </CardActionArea>

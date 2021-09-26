@@ -1,12 +1,10 @@
 import { useState, createContext } from 'react';
 
-import questions from '../data/questions';
-
 const AppContext = createContext([{}, () => {}]);
 
 const AppProvider = ({ children }) => {
   const [state, setState] = useState({
-    questions
+    questions: []
   });
 
   return (

@@ -6,18 +6,17 @@ import Tile from './Tile';
 
 describe('Testing <Tile />', () => {
   const question = {
-    title: 'Second Question',
-    content: 'How many stones is 112 pounds?',
+    question: 'How many stones is 112 pounds?',
     answer: '4'
   };
 
   setup(beforeEach)(
-    () => renderWith()(<Tile question={question} />)
+    () => renderWith()(<Tile question={question} index={4} />)
   );
 
   test('Renders', () => {
     expect(
-      screen.getByText(question.title)
+      screen.getByText(question.question)
     ).toBeInTheDocument();
   });
 });
