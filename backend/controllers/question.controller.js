@@ -1,6 +1,6 @@
-const db = require('../models');
-const Question = db.Questions;
-const AppUser = db.AppUsers;
+const models = require('../models');
+const Question = models.Questions;
+const AppUser = models.AppUsers;
 
 exports.getQuestions = async (req, res) => {
   try {
@@ -38,6 +38,12 @@ exports.getQuestions = async (req, res) => {
 exports.createQuestion = async (req, res) => {
   try {
     const appUser = await AppUser.findById(req.userId);
+
+    if (!appUser)
+      return res.status(401).send({
+        message: 'Cannot find your user info. Please relog.'
+      });
+
     const newQuestion = new Question({
       question: req.body.question,
       answer: req.body.answer,
@@ -55,7 +61,7 @@ exports.createQuestion = async (req, res) => {
     await appUser.save();
 
     res.send({
-      data: newQuestion,
+      data: appUser,
       message: 'New Question created'
     });
   } catch (e) {
@@ -122,6 +128,8 @@ exports.deleteQuestion = async (req, res) => {
 
     const ix = appUser.questions.findIndex(q => q._id === req.body.id);
     appUser.questions.splice(ix, 1);
+
+    await appUser.save();
 
     res.send({
       data: appUser,

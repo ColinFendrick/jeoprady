@@ -67,7 +67,7 @@
       "prefer-single"
     ],
     "semi": [
-      "error",
+      "warn",
       "always"
     ],
     "eol-last": ["warn", "always"],

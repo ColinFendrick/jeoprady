@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const db = require('../models');
-const AppUser = db.AppUsers;
+const models = require('../models');
+const AppUser = models.AppUsers;
 
 exports.signUp = async (req, res) => {
   const appUser = new AppUser({
@@ -83,7 +83,6 @@ exports.getUser = async (req, res) => {
       data: appUser,
       message: 'Successfully retrieved self data'
     });
-
   } catch (e) {
     res.status(500).send({
       message: e.message
