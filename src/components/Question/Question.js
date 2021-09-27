@@ -1,6 +1,5 @@
 import { useMutation } from 'react-query';
 
-// import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { Modal } from '..';
 
