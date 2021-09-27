@@ -1,7 +1,6 @@
 import { Switch, Route } from 'react-router-dom';
 
-import { Home } from './components';
-import { Main, Login, Signup } from './views';
+import { Main, Login, Signup, Home } from './views';
 
 const App = () => (
   <Main>

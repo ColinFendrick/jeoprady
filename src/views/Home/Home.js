@@ -4,7 +4,7 @@ import { useQuery, useMutation } from 'react-query';
 import AppService from '../../services/AppService';
 import useAppContext from '../../hooks/useAppContext';
 
-import { Tile, HomeButtons } from '..';
+import { Tile, HomeButtons } from '../../components';
 
 import useStyles from './styles';
 

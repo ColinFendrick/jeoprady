@@ -1,5 +1,4 @@
 import AddQuestionForm from './AddQuestionForm/AddQuestionForm';
-import Home from './Home/Home';
 import HomeButtons from './HomeButtons/HomeButtons';
 import LoginForm from './LoginForm/LoginForm';
 import Modal from './Modal/Modal';
@@ -9,7 +8,6 @@ import Tile from './Tile/Tile';
 
 export {
   AddQuestionForm,
-  Home,
   HomeButtons,
   LoginForm,
   Modal,
