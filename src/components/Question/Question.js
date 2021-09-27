@@ -12,6 +12,7 @@ import useStyles from './styles';
 const Question = ({ question, modalState }) => {
   const classes = useStyles();
   const { appState, setAppState } = useAppContext();
+  const [, flipState] = modalState;
 
   const { mutate: deleteQuestion } = useMutation(
     () => AppService.deleteQuestion(appState.user.accessToken)({ id: question._id }),
@@ -22,6 +23,7 @@ const Question = ({ question, modalState }) => {
           questions: data.data.questions,
           user: { ...state.user, ...data.data }
         }));
+        flipState();
       }
     }
   );

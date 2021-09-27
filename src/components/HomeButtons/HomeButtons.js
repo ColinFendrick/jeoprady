@@ -1,14 +1,11 @@
-import { useState } from 'react';
-
 import { Button } from '@material-ui/core';
 import { AddQuestionForm, Modal } from '..';
 
 import makeStyles from './styles';
 
-const HomeButtons = ({ createQuestion, isLoading }) => {
+const HomeButtons = ({ createQuestion, modalState, isLoading }) => {
   const classes = makeStyles();
-  const [open, setOpen] = useState(false);
-  const flipState = () => setOpen(!open);
+  const [, flipState] = modalState;
 
   return (
     <>
@@ -19,7 +16,7 @@ const HomeButtons = ({ createQuestion, isLoading }) => {
         </Button>
       </div>
 
-      <Modal modalState={[open, flipState]}>
+      <Modal modalState={modalState}>
         <div className={classes.paper}>
           <AddQuestionForm onSubmit={createQuestion} isLoading={isLoading} />
         </div>
