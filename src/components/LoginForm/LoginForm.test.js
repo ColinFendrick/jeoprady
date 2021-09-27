@@ -9,7 +9,7 @@ describe('Testing <LoginForm />', () => {
     () => renderWith()(
       <LoginForm
         onSubmit={() => {}}
-        loading={false}
+        isLoading={false}
         message='test message'
       />)
   );

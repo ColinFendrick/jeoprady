@@ -8,9 +8,7 @@ const LoginForm = ({ onSubmit, isLoading, message }) => {
   });
 
   return (
-    <form onSubmit={
-      handleSubmit(onSubmit)
-    }>
+    <form onSubmit={handleSubmit(onSubmit)}>
 
       <div className='form-group'>
         <label htmlFor='username'>Username</label>

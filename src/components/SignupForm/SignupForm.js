@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import { passwordRegex, emailRegex } from '../../helpers/regex';
 
-const SignupForm = ({ onSubmit, loading, message }) => {
+const SignupForm = ({ onSubmit, isLoading, message }) => {
   const { register, handleSubmit, errors } = useForm({
     username: '', email: '', password: ''
   });
@@ -58,9 +58,9 @@ const SignupForm = ({ onSubmit, loading, message }) => {
       <div className='form-group'>
         <button
           className='btn btn-primary btn-block'
-          disabled={loading}
+          disabled={isLoading}
           type='submit'>
-          {loading && (
+          {isLoading && (
             <span className='spinner-border spinner-border-sm'></span>
           )}
           <span>Sign Up</span>

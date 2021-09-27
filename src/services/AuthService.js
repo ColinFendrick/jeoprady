@@ -17,7 +17,7 @@ const login = async ({ username, password }) => {
   return res;
 };
 
-const logout = () => localStorage.remoteItem('user');
+const logout = () => localStorage.removeItem('user');
 
 const self = async () => await http.get(`${path}/self`);
 

@@ -6,7 +6,7 @@ import { SignupForm } from '../../components';
 
 const Signup = () => {
   const history = useHistory();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
   const handleSignup = async data => {
@@ -30,7 +30,7 @@ const Signup = () => {
   return (
     <div className='col-md-12'>
       <div className='card card-container'>
-        <SignupForm onSubmit={handleSignup} message={message} loading={loading} />
+        <SignupForm onSubmit={handleSignup} message={message} isLoading={isLoading} />
       </div>
     </div>
   );
