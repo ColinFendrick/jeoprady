@@ -1,22 +1,37 @@
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 
 import AppService from '../../services/AppService';
 import useAppContext from '../../hooks/useAppContext';
 
-import { Tile } from '..';
+import { Tile, HomeButtons } from '..';
 
 import useStyles from './styles';
 
 const Home = () => {
   const classes = useStyles();
   const { appState, setAppState } = useAppContext();
+  const { mutate, isLoading } = useMutation(
+    AppService.createQuestion(appState.user.accessToken),
+    {
+      onSuccess: ({ data }) => {
+        setAppState(state => ({
+          ...state,
+          questions: data.data.questions
+        }));
+      }
+    }
+  );
+
+  const createQuestion = async data => mutate(data);
 
   useQuery(
     'getQuestions',
-    () => AppService.getQuestions(appState.user.accessToken),
+    AppService.getQuestions(appState.user.accessToken),
     {
       onSuccess: ({ data }) => {
-        setAppState(state => ({ ...state, questions: data.data }));
+        setAppState(state => ({
+          ...state, questions: data.data
+        }));
       }
     }
   );
@@ -26,6 +41,8 @@ const Home = () => {
       {appState.questions.map((q, i) =>
         <Tile question={q} index={i} key={i} />
       )}
+
+      <HomeButtons createQuestion={createQuestion} isLoading={isLoading} />
     </div>
   );
 };
