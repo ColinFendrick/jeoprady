@@ -3,9 +3,7 @@ import { useForm } from 'react-hook-form';
 import { passwordRegex, emailRegex } from '../../helpers/regex';
 
 const SignupForm = ({ onSubmit, isLoading, message }) => {
-  const { register, handleSubmit, errors } = useForm({
-    username: '', email: '', password: ''
-  });
+  const { register, handleSubmit, errors } = useForm();
 
   return (
     <form onSubmit={

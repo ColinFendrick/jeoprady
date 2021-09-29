@@ -1,7 +1,12 @@
 import { useForm } from 'react-hook-form';
 
-const AddQuestionsForm = ({ onSubmit, isLoading }) => {
-  const { register, handleSubmit, errors } = useForm();
+const EditQuestionForm = ({ onSubmit, isLoading, question }) => {
+  const { register, handleSubmit, errors } = useForm({
+    defaultValues: {
+      question: question.question,
+      answer: question.answer
+    }
+  });
 
   return (
     <>
@@ -14,7 +19,6 @@ const AddQuestionsForm = ({ onSubmit, isLoading }) => {
             className='form-control'
             id='question'
             ref={register({ required: true })}
-            defaultValue=''
             name='question' />
           {errors.question && 'Question is required'}
         </div>
@@ -26,7 +30,6 @@ const AddQuestionsForm = ({ onSubmit, isLoading }) => {
             className='form-control'
             id='answer'
             ref={register({ required: true })}
-            defaultValue=''
             name='answer' />
           {errors.answer && 'Answer is required'}
         </div>
@@ -48,4 +51,4 @@ const AddQuestionsForm = ({ onSubmit, isLoading }) => {
   );
 };
 
-export default AddQuestionsForm;
+export default EditQuestionForm;
