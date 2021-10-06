@@ -5,22 +5,22 @@ const questions = require('../controllers/question.controller');
 
 const questionRoutes = app => {
   router.get('/question',
-    verifyJwt.verifyToken,
+    verifyJwt,
     questions.getQuestions
   );
 
   router.post('/question',
-    verifyJwt.verifyToken,
+    verifyJwt,
     questions.createQuestion
   );
 
   router.put('/question/:id',
-    verifyJwt.verifyToken,
+    verifyJwt,
     questions.updateQuestion
   );
 
   router.delete('/question/:id',
-    verifyJwt.verifyToken,
+    verifyJwt,
     questions.deleteQuestion
   );
 

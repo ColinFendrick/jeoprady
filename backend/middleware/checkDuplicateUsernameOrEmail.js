@@ -33,6 +33,4 @@ const checkDuplicateUsernameOrEmail = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  checkDuplicateUsernameOrEmail
-};
+module.exports = checkDuplicateUsernameOrEmail;

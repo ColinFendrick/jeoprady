@@ -11,6 +11,15 @@ exports.getQuestions = async (req, res) => {
         message: 'Cannot find your username. Please sign out and back in.'
       });
 
+    if (appUser.admin) {
+      const questions = await Question.find({ appUser });
+
+      res.send({
+        data: questions,
+        message: 'Successfully retrieved all user questions'
+      });
+    }
+
     const questions = await Question.find({ appUser });
 
     if (!questions)

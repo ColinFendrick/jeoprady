@@ -1,7 +1,9 @@
-const verifySignUp = require('./verifySignUp');
+const checkDuplicateUsernameOrEmail = require('./checkDuplicateUsernameOrEmail');
 const verifyJwt = require('./verifyJwt');
+const verifyAdmin = require('./verifyAdmin');
 
 module.exports = {
-  verifySignUp,
-  verifyJwt
+  checkDuplicateUsernameOrEmail,
+  verifyJwt,
+  verifyAdmin
 };
