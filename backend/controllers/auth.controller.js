@@ -13,12 +13,21 @@ exports.signUp = async (req, res) => {
 
   try {
     await appUser.save();
+
+    const accessToken = jwt.sign({
+      id: appUser._id
+    }, 'secrettoken', {
+      expiresIn: 86400 // 24 hours
+    });
+
+
     res.send({
       data: {
-        username: req.body.username,
-        email: req.body.email,
+        username: appUser.username,
+        email: appUser.email,
         questions: appUser.questions,
-        id: appUser._id
+        id: appUser._id,
+        accessToken
       },
       message: `${req.body.username} successfully created`
     });
@@ -47,7 +56,7 @@ exports.signIn = async (req, res) => {
         message: 'Invalid Password!'
       });
 
-    const token = jwt.sign({
+    const accessToken = jwt.sign({
       id: appUser._id
     }, 'secrettoken', {
       expiresIn: 86400 // 24 hours
@@ -59,7 +68,7 @@ exports.signIn = async (req, res) => {
         email: appUser.email,
         questions: appUser.questions,
         id: appUser._id,
-        accessToken: token
+        accessToken
       },
       message: 'Token accepted. Sign in successful.'
     });
