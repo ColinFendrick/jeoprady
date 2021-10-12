@@ -1,6 +1,4 @@
 module.exports = mongoose => {
-  const Schema = mongoose.Schema;
-
   const Question = new mongoose.Schema({
     question: {
       type: String,
@@ -11,7 +9,7 @@ module.exports = mongoose => {
       required: true
     },
     appUser: {
-      type: Schema.Types.ObjectId, ref: 'AppUser'
+      type: mongoose.Schema.Types.ObjectId, ref: 'AppUser'
     }
   });
 
