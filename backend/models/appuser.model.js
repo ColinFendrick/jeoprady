@@ -28,6 +28,19 @@ module.exports = mongoose => {
           required: true
         }
       }
+    ],
+    players: [
+      {
+        username: {
+          type: String,
+          required: true
+        },
+        score: {
+          type: Number,
+          required: true,
+          default: 0
+        }
+      }
     ]
   });
 

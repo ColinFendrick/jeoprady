@@ -9,7 +9,8 @@ module.exports = mongoose => {
       required: true
     },
     appUser: {
-      type: mongoose.Schema.Types.ObjectId, ref: 'AppUser'
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'AppUser'
     }
   });
 
