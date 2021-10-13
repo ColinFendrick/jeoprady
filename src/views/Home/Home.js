@@ -4,17 +4,18 @@ import { useQuery, useMutation } from 'react-query';
 import AppService from '../../services/AppService';
 import useAppContext from '../../hooks/useAppContext';
 
-import { Tile, HomeButtons } from '../../components';
+import { Tile, HomeButtons, PlayerButtons } from '../../components';
 
 import useStyles from './styles';
 
 const Home = () => {
   const classes = useStyles();
   const { appState, setAppState } = useAppContext();
-  const [open, setOpen] = useState(false);
-  const flipState = () => setOpen(!open);
+  const [cqOpen, setCqOpen] = useState(false);
+  const [playerOpen, setPlayerOpen] = useState(false);
+  const flipState = ([state, fn]) => () => fn(!state);
 
-  const { mutate, isLoading } = useMutation(
+  const { mutate: cqMutation, isLoading: cqIsLoading } = useMutation(
     AppService.createQuestion(appState.user.accessToken),
     {
       onSuccess: ({ data }) => {
@@ -27,7 +28,22 @@ const Home = () => {
     }
   );
 
-  const createQuestion = async data => mutate(data);
+  const createQuestion = async data => cqMutation(data);
+
+  const { mutate: addPlayerMutation, isLoading: addPlayerIsLoading } = useMutation(
+    AppService.addPlayer(appState.user.accessToken),
+    {
+      onSuccess: ({ data }) => {
+        setAppState(state => ({
+          ...state,
+          user: data
+        }));
+        flipState();
+      }
+    }
+  );
+
+  const addUser = async data => addPlayerMutation(data);
 
   useQuery(
     'getQuestions',
@@ -49,8 +65,14 @@ const Home = () => {
 
       <HomeButtons
         createQuestion={createQuestion}
-        modalState={[open, flipState]}
-        isLoading={isLoading}
+        modalState={[cqOpen, flipState([cqOpen, setCqOpen])]}
+        isLoading={cqIsLoading}
+      />
+
+      <PlayerButtons
+        addUser={addUser}
+        modalState={[playerOpen, flipState([playerOpen, setPlayerOpen])]}
+        isLoading={addPlayerIsLoading}
       />
     </div>
   );
