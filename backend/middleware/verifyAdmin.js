@@ -1,7 +1,7 @@
 const db = require('../models');
 const AppUser = db.AppUsers;
 
-const verifyAdmin = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const appUser = await AppUser.findById(req.userId);
 
@@ -22,5 +22,3 @@ const verifyAdmin = async (req, res, next) => {
     });
   }
 };
-
-module.exports = verifyAdmin;

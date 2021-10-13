@@ -1,7 +1,7 @@
 const db = require('../models');
 const AppUser = db.AppUsers;
 
-const checkDuplicateUsernameOrEmail = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const appuserByUsername = await AppUser.findOne({
       username: req.body.username
@@ -32,5 +32,3 @@ const checkDuplicateUsernameOrEmail = async (req, res, next) => {
     });
   }
 };
-
-module.exports = checkDuplicateUsernameOrEmail;
