@@ -1,8 +1,57 @@
 const models = require('../models');
 const AppUser = models.AppUsers;
 
-// exports.addPlayer =
-// exports.removePlayer =
+exports.addPlayer = async (req, res) => {
+  try {
+    const appUser = await AppUser.findById(req.userId);
+
+    if (!appUser)
+      return res.status(404).send({
+        message: 'Cannot find your username. Please sign out and back in.'
+      });
+
+    appUser.players.push({
+      username: req.body.username,
+      score: 0
+    });
+
+    await appUser.save();
+
+    res.send({
+      data: appUser,
+      message: `Added ${req.body.username}`
+    });
+  } catch (e) {
+    res.status(500).send({
+      message: e.message
+    });
+  }
+};
+exports.removePlayer = async (req, res) => {
+  try {
+    const appUser = await AppUser.findById(req.userId);
+
+    if (!appUser)
+      return res.status(404).send({
+        message: 'Cannot find your username. Please sign out and back in.'
+      });
+
+    const ix = appUser.players.findIndex(p => p.username === req.body.username);
+
+    appUser.questions.splice(ix, 1);
+
+    await appUser.save();
+
+    res.send({
+      data: appUser,
+      message: `Successfully deleted ${req.body.username}`
+    });
+  } catch (e) {
+    res.status(500).send({
+      message: e.message
+    });
+  }
+};
 
 exports.updatePlayerScore = async (req, res) => {
   try {
