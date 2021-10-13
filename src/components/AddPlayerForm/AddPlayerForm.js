@@ -26,7 +26,7 @@ const AddPlayerForm = ({ onSubmit, isLoading }) => {
           {isLoading && (
             <span className='spinner-border spinner-border-sm'></span>
           )}
-          <span>Submit Question</span>
+          <span>Add Player</span>
         </button>
       </div>
 

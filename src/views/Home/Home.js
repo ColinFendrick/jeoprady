@@ -13,6 +13,7 @@ const Home = () => {
   const { appState, setAppState } = useAppContext();
   const [cqOpen, setCqOpen] = useState(false);
   const [playerOpen, setPlayerOpen] = useState(false);
+  const flipState = ([state, fn]) => () => fn(!state);
 
   const { mutate: cqMutation, isLoading: cqIsLoading } = useMutation(
     AppService.createQuestion(appState.user.accessToken),
@@ -22,7 +23,7 @@ const Home = () => {
           ...state,
           questions: data.data.questions
         }));
-        setCqOpen(false);
+        flipState();
       }
     }
   );
@@ -37,7 +38,7 @@ const Home = () => {
           ...state,
           user: data
         }));
-        setPlayerOpen(false);
+        flipState();
       }
     }
   );
@@ -64,13 +65,13 @@ const Home = () => {
 
       <HomeButtons
         createQuestion={createQuestion}
-        modalState={[cqOpen, setCqOpen]}
+        modalState={[cqOpen, flipState([cqOpen, setCqOpen])]}
         isLoading={cqIsLoading}
       />
 
       <PlayerButtons
         addUser={addUser}
-        modalState={[playerOpen, setPlayerOpen]}
+        modalState={[playerOpen, flipState([playerOpen, setPlayerOpen])]}
         isLoading={addPlayerIsLoading}
       />
     </div>

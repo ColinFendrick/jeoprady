@@ -12,7 +12,9 @@ const PlayerButtons = ({ addUser, modalState, isLoading }) => {
       </Button>
 
       <Modal modalState={modalState}>
-        <AddPlayerForm onSubmit={addUser} isLoading={isLoading} />
+        <div>
+          <AddPlayerForm onSubmit={addUser} isLoading={isLoading} />
+        </div>
       </Modal>
     </>
   );
