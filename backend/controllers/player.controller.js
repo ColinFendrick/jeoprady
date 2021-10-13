@@ -3,12 +3,7 @@ const AppUser = models.AppUsers;
 
 exports.addPlayer = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(404).send({
-        message: 'Cannot find your username. Please sign out and back in.'
-      });
+    const appUser = req.appUser;
 
     appUser.players.push({
       username: req.body.username,
@@ -29,12 +24,7 @@ exports.addPlayer = async (req, res) => {
 };
 exports.removePlayer = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(404).send({
-        message: 'Cannot find your username. Please sign out and back in.'
-      });
+    const appUser = req.appUser;
 
     const ix = appUser.players.findIndex(p => p.username === req.body.username);
 
@@ -55,12 +45,7 @@ exports.removePlayer = async (req, res) => {
 
 exports.updatePlayerScore = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(404).send({
-        message: 'Cannot find your username. Please sign out and back in.'
-      });
+    const appUser = req.appUser;
 
     const ix = appUser.players.findIndex(p => p.username === req.body.username);
     const player = appUser.players[ix];

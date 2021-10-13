@@ -81,12 +81,7 @@ exports.signIn = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(404).send({
-        message: 'Cannot find your user credentials'
-      });
+    const appUser = req.appUser;
 
     res.send({
       data: appUser,

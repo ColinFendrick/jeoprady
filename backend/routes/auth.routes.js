@@ -3,7 +3,8 @@ const router = require('express').Router();
 const {
   checkDuplicateUsernameOrEmail,
   verifyJwt,
-  verifyAdmin
+  verifyAdmin,
+  verifyUser
 } = require('../middleware');
 const auth = require('../controllers/auth.controller');
 
@@ -17,6 +18,7 @@ const authRoutes = app => {
 
   router.get('/self',
     verifyJwt,
+    verifyUser,
     auth.getUser
   );
 

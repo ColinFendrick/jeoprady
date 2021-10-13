@@ -4,12 +4,7 @@ const AppUser = models.AppUsers;
 
 exports.getQuestions = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(404).send({
-        message: 'Cannot find your username. Please sign out and back in.'
-      });
+    const appUser = req.appUser;
 
     if (appUser.admin) {
       const questions = await Question.find({ appUser });
@@ -46,12 +41,7 @@ exports.getQuestions = async (req, res) => {
 
 exports.createQuestion = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(401).send({
-        message: 'Cannot find your user info. Please relog.'
-      });
+    const appUser = req.appUser;
 
     const newQuestion = new Question({
       question: req.body.question,
@@ -82,12 +72,7 @@ exports.createQuestion = async (req, res) => {
 
 exports.updateQuestion = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(401).send({
-        message: 'Cannot find your user info. Please relog.'
-      });
+    const appUser = req.appUser;
 
     const question = await Question.findByIdAndUpdate(
       req.params.id,
@@ -121,12 +106,7 @@ exports.updateQuestion = async (req, res) => {
 
 exports.deleteQuestion = async (req, res) => {
   try {
-    const appUser = await AppUser.findById(req.userId);
-
-    if (!appUser)
-      return res.status(401).send({
-        message: 'Cannot find your user info. Please relog.'
-      });
+    const appUser = req.appUser;
 
     const question = await Question.findByIdAndDelete(req.params.id);
 
