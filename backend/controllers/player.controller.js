@@ -1,6 +1,3 @@
-const models = require('../models');
-const AppUser = models.AppUsers;
-
 exports.addPlayer = async (req, res) => {
   try {
     const appUser = req.appUser;

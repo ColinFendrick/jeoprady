@@ -1,6 +1,5 @@
 const models = require('../models');
 const Question = models.Questions;
-const AppUser = models.AppUsers;
 
 exports.getQuestions = async (req, res) => {
   try {
