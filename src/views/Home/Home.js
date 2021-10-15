@@ -23,7 +23,7 @@ const Home = () => {
           ...state,
           questions: data.data.questions
         }));
-        flipState();
+        flipState([cqOpen, setCqOpen])();
       }
     }
   );
@@ -38,7 +38,7 @@ const Home = () => {
           ...state,
           user: data
         }));
-        flipState();
+        flipState([playerOpen, setPlayerOpen])();
       }
     }
   );
@@ -49,11 +49,10 @@ const Home = () => {
     'getQuestions',
     AppService.getQuestions(appState.user.accessToken),
     {
-      onSuccess: ({ data }) => {
-        setAppState(state => ({
+      onSuccess: ({ data }) =>
+        void setAppState(state => ({
           ...state, questions: data.data
-        }));
-      }
+        }))
     }
   );
 
